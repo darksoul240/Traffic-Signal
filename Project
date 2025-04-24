@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <unistd.h>
+void TL3();
+void TL4();
+
+int main() {
+    int s;
+    printf("Enter the type of junction for Traffic Light Simulation: \n");
+    printf("1. 4-way junction \n2. 3-way junction\n");
+    printf("Choose: ");
+    scanf("%d",&s);
+    switch(s){
+        case 1:TL4(); 
+            break;
+       
+        case 2:TL3();
+            break;
+       
+        default: printf("Choose a valid option\n");
+    }
+
+}
+void TL3(){{
+    int i = 0, j, k;
+    char *road[] = {"L1", "L2", "L3", "L4", "L5", "L6"};
+
+    while (1) {
+        
+        if (i % 2 == 0) {
+            if (i == 0 || i == 2) {
+                j = i + 3;
+                printf("For Traffic from %s is GREEN to %s\n", road[i], road[j]);
+                sleep(5);
+                printf("\nFor Traffic from %s is YELLOW to %s\n", road[i], road[j]);
+            } else {
+                j = i - 3;
+                printf("For Traffic from %s is GREEN to %s, %s\n", road[i], road[j], road[j + 4]);
+                sleep(5);
+                printf("\nFor Traffic from %s is YELLOW to %s & %s\n", road[i], road[j], road[j + 4]);
+            }
+        }
+
+        for (k = 0; k < 6; k++) {
+            if (k % 2 == 0 && k != i) {
+                if (k != 4) {
+                    j = k + 3;
+                    printf("For Traffic from %s is RED to %s\n", road[k], road[j]);
+                } else {
+                    j = k - 3;
+                    printf("For Traffic from %s is RED to %s & %s\n", road[k], road[j], road[j + 4]);
+                }
+            }
+        }
+
+
+        sleep(2);
+        i = (i + 1) % 6;
+    printf("\n---------------------------\n");}
+}
+}
+void TL4(){
+
+   int i, j, k;
+   char *road[] = {"L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L1", "L2", "L3", "L4"};
+ 
+
+   while(1) {
+       for(i = 0; i < 8; i++) {
+           if(i % 2 == 0) {
+          
+               j = i + 3;
+               if(j >= 8) j -= 8;
+               printf("Traffic from %s is GREEN for %s and %s\n", road[i], road[j], road[j+2]);
+
+               
+               for(k = 0; k < 8; k++) {
+                   if(k % 2 == 0 && k != i) {
+                       int red_j = k + 3;
+                       if(red_j >= 8) red_j -= 8;
+                       printf("Traffic from %s is RED for %s and %s\n", road[k], road[red_j], road[red_j+2]);
+                   }
+               }
+
+               sleep(5);
+               printf("\nFor Traffic from %s is YELLOW for %s and %s\n", road[i], road[j], road[j+2]);
+               sleep(2); 
+
+               printf("\n---------------------------\n"); 
+           }
+       }
+   }
+}
+
+
+}
