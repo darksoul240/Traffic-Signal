@@ -6,7 +6,7 @@ void TL4();
 int main() {
     int s;
     printf("Enter the type of junction for Traffic Light Simulation: \n");
-    printf("1. 4-way junction \n2. 3-way junction\n");
+    printf("1. 4-way junction \n2. 3-way juntion\n");
     printf("Choose: ");
     scanf("%d",&s);
     switch(s){
